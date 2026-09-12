@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/luscious-scoop/binary_search_trees/issues"
   },
-  "homepage": "https://github.com/luscious-scoop/binary_search_trees#readme"
+  "homepage": "https://github.com/luscious-scoop/binary_search_trees#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.10.0",
+    "globals": "^17.12.0"
+  }
 }
