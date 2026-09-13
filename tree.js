@@ -19,8 +19,19 @@ function Tree(arr) {
     return root;
   }
 
+  const prettyPrint = (node = root, prefix = '', isLeft = true) => {
+    if (node === null || node === undefined) {
+      return;
+    }
+
+    prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+    prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+  };
+
   return Object.freeze({
     getArray,
+    prettyPrint,
   });
 }
 
