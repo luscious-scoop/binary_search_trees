@@ -1,15 +1,29 @@
+import { Node } from './node.js';
+
 function Tree(arr) {
   const array = [...new Set(arr)].sort((a, b) => a - b);
 
-  let root = null;
+  let root = buildTree(array);
 
   const getArray = () => array;
+
+  function buildTree(array, start = 0, end = array.length - 1) {
+    if (start > end) {
+      return null;
+    }
+    const mid = Math.floor((end + start) / 2);
+    const root = new Node(array[mid]);
+
+    root.left = buildTree(arr, start, mid - 1);
+    root.right = buildTree(arr, mid + 1, end);
+    return root;
+  }
 
   return Object.freeze({
     getArray,
   });
 }
 
-let tr = Tree([6, 5, 10, 4, 4, 1, 3, 2, 10]);
+let tr = Tree([1, 5, 9, 14, 23, 27]);
 
 console.log(tr.getArray());
