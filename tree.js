@@ -29,12 +29,31 @@ function Tree(arr) {
     prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
   };
 
+  function has(value) {
+    let curr = root;
+
+    while (curr !== null) {
+      if (curr.data === value) {
+        return true;
+      } else if (curr.data > value && curr.left !== null) {
+        curr = curr.left;
+      } else if (curr.data < value && curr.right !== null) {
+        curr = curr.right;
+      } else {
+        break;
+      }
+    }
+
+    return false;
+  }
+
   return Object.freeze({
     getArray,
     prettyPrint,
+    has,
   });
 }
 
 let tr = Tree([1, 5, 9, 14, 23, 27]);
 
-console.log(tr.getArray());
+console.log(tr.has(900));
