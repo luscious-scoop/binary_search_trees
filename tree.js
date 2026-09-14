@@ -47,13 +47,41 @@ function Tree(arr) {
     return false;
   }
 
+  function insert(value) {
+    const temp = new Node(value);
+
+    if (!root) {
+      root = temp;
+    }
+
+    let curr = root;
+    while (curr !== null) {
+      if (curr.data === value) {
+        break;
+      } else if (value < curr.data && curr.left !== null) {
+        curr = curr.left;
+      } else if (value > curr.data && curr.right !== null) {
+        curr = curr.right;
+      } else {
+        break;
+      }
+    }
+
+    if (curr.data > value) {
+      curr.left = temp;
+    } else if (curr.data < value) {
+      curr.right = temp;
+    }
+  }
+
   return Object.freeze({
     getArray,
     prettyPrint,
     has,
+    insert,
   });
 }
 
-let tr = Tree([1, 5, 9, 14, 23, 27]);
+let tr = Tree([1, 2, 3, 4, 5, 6, 7]);
 
-console.log(tr.has(900));
+tr.prettyPrint();
