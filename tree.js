@@ -76,7 +76,9 @@ function Tree(arr) {
 
   function getSuccessor(curr) {
     curr = curr.right;
-    while (curr !== null && curr.left !== null) curr = curr.left;
+    while (curr !== null && curr.left !== null) {
+      curr = curr.left;
+    }
     return curr;
   }
 
@@ -99,7 +101,7 @@ function Tree(arr) {
 
       let succ = getSuccessor(curr);
       curr.data = succ.data;
-      root.right = deleteItem(succ.data, curr.right);
+      curr.right = deleteItem(succ.data, curr.right);
     }
     return curr;
   }
@@ -114,6 +116,6 @@ function Tree(arr) {
 }
 
 let tr = Tree([1, 2, 3, 4, 5, 6, 7]);
-tr.deleteItem(0);
+tr.deleteItem(2);
 
 tr.prettyPrint();
