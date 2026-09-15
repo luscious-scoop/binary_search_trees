@@ -106,17 +106,43 @@ function Tree(arr) {
     return curr;
   }
 
-  function levelOrderForEach(callback) {}
+  function levelOrderForEach(callback = null) {
+    const queue = [];
+
+    if (!root) {
+      return;
+    }
+    if (!callback) {
+      throw new Error('No callback provided');
+    }
+
+    queue.push(root);
+
+    while (queue.length !== 0) {
+      const node = queue.shift();
+
+      callback(node.data);
+
+      if (node.left !== null) {
+        queue.push(node.left);
+      }
+      if (node.right !== null) {
+        queue.push(node.right);
+      }
+    }
+  }
   return Object.freeze({
     getArray,
     prettyPrint,
     has,
     insert,
     deleteItem,
+    levelOrderForEach,
   });
 }
 
 let tr = Tree([1, 2, 3, 4, 5, 6, 7]);
-tr.deleteItem(2);
 
-tr.prettyPrint();
+tr.levelOrderForEach((value) => {
+  console.log(value);
+});
