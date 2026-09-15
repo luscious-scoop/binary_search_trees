@@ -106,6 +106,7 @@ function Tree(arr) {
     return curr;
   }
 
+  function levelOrderForEach(callback) {}
   return Object.freeze({
     getArray,
     prettyPrint,
