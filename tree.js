@@ -201,6 +201,26 @@ function Tree(arr) {
     callback(node.data);
   }
 
+  function getNode(value, node = root) {
+    if (!node) {
+      return;
+    }
+
+    if (node.data === value) {
+      return node;
+    } else if (node.data > value && node.left !== null) {
+      node = node.left;
+    } else if (node.data < value && node.right !== null) {
+      node = node.right;
+    } else {
+      return undefined;
+    }
+
+    return getNode(value, node);
+  }
+
+  function height(value) {}
+
   return Object.freeze({
     getArray,
     prettyPrint,
@@ -217,8 +237,5 @@ function Tree(arr) {
 
 const tr = Tree([1, 2, 3, 4, 5, 6, 7]);
 
-tr.prettyPrint();
-
-tr.postOrderForEach((value) => {
-  console.log(value);
-});
+console.log(tr.getNode(3));
+// tr.prettyPrint();
