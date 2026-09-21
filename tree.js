@@ -156,6 +156,22 @@ function Tree(arr) {
 
     levelOrderForEachRec(callback, Q);
   }
+
+  function preOrderForEach(callback, node = root) {
+    if (!callback) {
+      throw new Error('No callback provided');
+    }
+
+    if (!node) {
+      return;
+    }
+
+    callback(node.data);
+
+    preOrderForEach(callback, node.left);
+    preOrderForEach(callback, node.right);
+  }
+
   return Object.freeze({
     getArray,
     prettyPrint,
@@ -164,19 +180,14 @@ function Tree(arr) {
     deleteItem,
     levelOrderForEach,
     levelOrderForEachRec,
+    preOrderForEach,
   });
 }
 
-let tr = Tree([1, 2, 3, 4, 5, 6, 7]);
-
-console.log('iteration version');
-tr.levelOrderForEach((value) => {
-  console.log(value);
-});
-
-console.log('recursive version');
-tr.levelOrderForEachRec((value) => {
-  console.log(value);
-});
+const tr = Tree([1, 2, 3, 4, 5, 6, 7]);
 
 tr.prettyPrint();
+
+tr.preOrderForEach((value) => {
+  console.log(value);
+});
