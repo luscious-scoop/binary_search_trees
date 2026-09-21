@@ -30,20 +30,11 @@ function Tree(arr) {
   };
 
   function has(value) {
-    let curr = root;
+    const node = getNode(value);
 
-    while (curr !== null) {
-      if (curr.data === value) {
-        return true;
-      } else if (curr.data > value && curr.left !== null) {
-        curr = curr.left;
-      } else if (curr.data < value && curr.right !== null) {
-        curr = curr.right;
-      } else {
-        break;
-      }
+    if (node) {
+      return true;
     }
-
     return false;
   }
 
@@ -237,5 +228,5 @@ function Tree(arr) {
 
 const tr = Tree([1, 2, 3, 4, 5, 6, 7]);
 
-console.log(tr.getNode(3));
+console.log(tr.has(0));
 // tr.prettyPrint();
