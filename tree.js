@@ -131,6 +131,31 @@ function Tree(arr) {
       }
     }
   }
+
+  function levelOrderForEachRec(callback, Q = [root]) {
+    if (!callback) {
+      throw new Error('No callback provided');
+    }
+
+    if (!root) {
+      return;
+    }
+    if (Q.length === 0) {
+      return;
+    }
+    const item = Q.shift();
+    callback(item.data);
+
+    if (item.left) {
+      Q.push(item.left);
+    }
+
+    if (item.right) {
+      Q.push(item.right);
+    }
+
+    levelOrderForEachRec(callback, Q);
+  }
   return Object.freeze({
     getArray,
     prettyPrint,
@@ -138,11 +163,20 @@ function Tree(arr) {
     insert,
     deleteItem,
     levelOrderForEach,
+    levelOrderForEachRec,
   });
 }
 
 let tr = Tree([1, 2, 3, 4, 5, 6, 7]);
 
+console.log('iteration version');
 tr.levelOrderForEach((value) => {
   console.log(value);
 });
+
+console.log('recursive version');
+tr.levelOrderForEachRec((value) => {
+  console.log(value);
+});
+
+tr.prettyPrint();
