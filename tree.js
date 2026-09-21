@@ -186,6 +186,21 @@ function Tree(arr) {
     inOrderForEach(callback, node.right);
   }
 
+  function postOrderForEach(callback, node = root) {
+    if (!callback) {
+      throw new Error('No callback provided');
+    }
+
+    if (!node) {
+      return;
+    }
+
+    postOrderForEach(callback, node.left);
+
+    postOrderForEach(callback, node.right);
+    callback(node.data);
+  }
+
   return Object.freeze({
     getArray,
     prettyPrint,
@@ -196,6 +211,7 @@ function Tree(arr) {
     levelOrderForEachRec,
     preOrderForEach,
     inOrderForEach,
+    postOrderForEach,
   });
 }
 
@@ -203,6 +219,6 @@ const tr = Tree([1, 2, 3, 4, 5, 6, 7]);
 
 tr.prettyPrint();
 
-tr.inOrderForEach((value) => {
+tr.postOrderForEach((value) => {
   console.log(value);
 });
