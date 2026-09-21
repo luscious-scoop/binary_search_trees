@@ -210,7 +210,31 @@ function Tree(arr) {
     return getNode(value, node);
   }
 
-  function height(value) {}
+  function height(value) {
+    const node = getNode(value);
+
+    if (!node) {
+      return undefined;
+    }
+
+    let leftSubTree = node.left;
+    let rightSubtree = node.right;
+
+    let leftSubtreeCount = 0;
+    let rightSubtreeCount = 0;
+
+    while (leftSubTree) {
+      leftSubtreeCount++;
+      leftSubTree = leftSubTree.left;
+    }
+
+    while (rightSubtree) {
+      rightSubtreeCount++;
+      rightSubtree = rightSubtree.right;
+    }
+
+    return Math.max(leftSubtreeCount, rightSubtreeCount);
+  }
 
   return Object.freeze({
     getArray,
@@ -223,10 +247,11 @@ function Tree(arr) {
     preOrderForEach,
     inOrderForEach,
     postOrderForEach,
+    height,
   });
 }
 
-const tr = Tree([1, 2, 3, 4, 5, 6, 7]);
+const tr = Tree([1, 2, 3, 4]);
 
-console.log(tr.has(0));
-// tr.prettyPrint();
+console.log(tr.height(2));
+tr.prettyPrint();
