@@ -266,6 +266,9 @@ function Tree(arr) {
         height(leftSubTree.data) - height(rightSubtree.data) === -1
       ) {
         isTreeBalanced = true;
+      } else {
+        isTreeBalanced = false;
+        break;
       }
       leftSubTree = leftSubTree.left;
       rightSubtree = rightSubtree.right;
@@ -302,3 +305,19 @@ function Tree(arr) {
 }
 
 const tr = Tree([1, 2, 3, 4]);
+
+console.log('before inserting');
+console.log(tr.isBalanced());
+tr.prettyPrint();
+
+console.log('after inserting');
+tr.insert(7);
+tr.prettyPrint();
+console.log(tr.isBalanced());
+
+console.log('after rebalance ');
+
+tr.rebalance();
+console.log(tr.isBalanced());
+
+tr.prettyPrint();
