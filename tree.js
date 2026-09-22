@@ -305,19 +305,3 @@ function Tree(arr) {
 }
 
 const tr = Tree([1, 2, 3, 4]);
-
-console.log('before inserting');
-console.log(tr.isBalanced());
-tr.prettyPrint();
-
-console.log('after inserting');
-tr.insert(7);
-tr.prettyPrint();
-console.log(tr.isBalanced());
-
-console.log('after rebalance ');
-
-tr.rebalance();
-console.log(tr.isBalanced());
-
-tr.prettyPrint();
