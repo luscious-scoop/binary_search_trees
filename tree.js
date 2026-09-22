@@ -285,7 +285,7 @@ function Tree(arr) {
     });
 
     root = buildTree(NewArray);
-    console.log(NewArray);
+    // console.log(NewArray);
   }
 
   return Object.freeze({
@@ -305,4 +305,39 @@ function Tree(arr) {
   });
 }
 
-const tr = Tree([1, 2, 3, 4]);
+// const array = [60, 20, 84, 9, 26, 71, 86, 89];
+
+// const tr = Tree(array);
+
+// console.log('before inserting');
+// tr.prettyPrint();
+// console.log(tr.isBalanced());
+
+// console.log('after insert');
+
+// tr.insert(105);
+// tr.insert(107);
+// tr.insert(200);
+
+// tr.prettyPrint();
+// console.log(tr.isBalanced());
+
+// console.log('after rebalance');
+
+// tr.rebalance();
+
+// tr.prettyPrint();
+
+// console.log(tr.isBalanced());
+
+// console.log('level order');
+// tr.levelOrderForEach((data) => console.log(data));
+
+// console.log('pre order');
+// tr.preOrderForEach((data) => console.log(data));
+
+// console.log(' inOrder');
+// tr.inOrderForEach((data) => console.log(data));
+
+// console.log('post order');
+// tr.postOrderForEach((data) => console.log(data));
