@@ -1,5 +1,5 @@
 import { Node } from './node.js';
-import { RandomNumberArrayGenarator } from './helper.js';
+import { RandomNumberArrayGenerator } from './helper.js';
 
 function Tree(arr) {
   const array = [...new Set(arr)].sort((a, b) => a - b);

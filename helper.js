@@ -1,4 +1,4 @@
-export const RandomNumberArrayGenarator = (length) => {
+export const RandomNumberArrayGenerator = (length) => {
   const randomArray = [];
 
   for (let i = 0; i < length; i++) {
