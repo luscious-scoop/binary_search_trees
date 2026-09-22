@@ -236,6 +236,25 @@ function Tree(arr) {
     return Math.max(leftSubtreeCount, rightSubtreeCount);
   }
 
+  function depth(value) {
+    let count = 0;
+
+    let curr = root;
+
+    while (curr !== null) {
+      if (curr.data === value) {
+        return count;
+      } else if (curr.data > value && curr.left !== null) {
+        curr = curr.left;
+      } else if (curr.data < value && curr.right !== null) {
+        curr = curr.right;
+      } else {
+        return undefined;
+      }
+      count++;
+    }
+  }
+
   return Object.freeze({
     getArray,
     prettyPrint,
@@ -248,10 +267,11 @@ function Tree(arr) {
     inOrderForEach,
     postOrderForEach,
     height,
+    depth,
   });
 }
 
 const tr = Tree([1, 2, 3, 4]);
 
-console.log(tr.height(2));
+console.log(tr.depth(1));
 tr.prettyPrint();
