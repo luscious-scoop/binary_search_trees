@@ -5,8 +5,6 @@ function Tree(arr) {
 
   let root = buildTree(array);
 
-  const getArray = () => array;
-
   function buildTree(array, start = 0, end = array.length - 1) {
     if (start > end) {
       return null;
@@ -14,8 +12,8 @@ function Tree(arr) {
     const mid = Math.floor((end + start) / 2);
     const root = new Node(array[mid]);
 
-    root.left = buildTree(arr, start, mid - 1);
-    root.right = buildTree(arr, mid + 1, end);
+    root.left = buildTree(array, start, mid - 1);
+    root.right = buildTree(array, mid + 1, end);
     return root;
   }
 
@@ -255,8 +253,38 @@ function Tree(arr) {
     }
   }
 
+  function isBalanced() {
+    let isTreeBalanced = false;
+    let curr = root;
+
+    let leftSubTree = curr.left;
+    let rightSubtree = curr.right;
+    while (leftSubTree && rightSubtree) {
+      if (
+        height(leftSubTree.data) === height(rightSubtree.data) ||
+        height(leftSubTree.data) - height(rightSubtree.data) === 1 ||
+        height(leftSubTree.data) - height(rightSubtree.data) === -1
+      ) {
+        isTreeBalanced = true;
+      }
+      leftSubTree = leftSubTree.left;
+      rightSubtree = rightSubtree.right;
+    }
+    return isTreeBalanced;
+  }
+
+  function rebalance() {
+    const NewArray = [];
+
+    inOrderForEach((data) => {
+      NewArray.push(data);
+    });
+
+    root = buildTree(NewArray);
+    console.log(NewArray);
+  }
+
   return Object.freeze({
-    getArray,
     prettyPrint,
     has,
     insert,
@@ -268,10 +296,9 @@ function Tree(arr) {
     postOrderForEach,
     height,
     depth,
+    isBalanced,
+    rebalance,
   });
 }
 
 const tr = Tree([1, 2, 3, 4]);
-
-console.log(tr.depth(1));
-tr.prettyPrint();
